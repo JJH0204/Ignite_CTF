@@ -1,6 +1,6 @@
 # Ignite
 
-![Logo.png](./ignite.png)
+![Logo.png](./git/ignite.png)
 
 > Team Firewall's First CTF Production Project
 
