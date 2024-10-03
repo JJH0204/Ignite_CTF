@@ -12,4 +12,4 @@ JJH0204(Jaeho): https://github.com/JJH0204
 
 ### 리소스 설치
 
-CTF머신 설치:
+CTF머신 설치: https://drive.google.com/drive/folders/1kN6JC0rfAl4YPQi9hRmUYRtEzPgVmpD_?usp=sharing
