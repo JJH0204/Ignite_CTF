@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마크다운 텍스트 출력 및 입력 확인</title>
+    <!-- marked.js 최신 버전에서 parse() 사용 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@5.0.2/marked.min.js"></script>
+    <!-- 외부 CSS 파일을 링크 -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- 마크다운 출력 박스 -->
+        <div class="output-box" id="markdown-content">
+            <!-- 마크다운 내용이 여기에 표시됩니다 -->
+        </div>
+
+        <!-- 퀴즈 정답 입력 및 확인 -->
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="정답을 입력하세요">
+            <button id="submit-button">확인</button>
+        </div>
+
+        <!-- 결과 메시지 영역 -->
+        <div id="result-message"></div>
+    </div>
+
+    <!-- 외부 JS 파일을 링크 -->
+    <script src="../script/script.js"></script>
+
+</body>
+
+</html>
