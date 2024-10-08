@@ -12,7 +12,7 @@
 - **사용자 계정**:
   - 일반 사용자 계정: **user1**
     - 사용자명: `user1`
-    - 비밀번호: `password123` (공격자가 웹사이트 해킹으로 획득한 비밀번호)
+    - 비밀번호: `1q2w3e4r!@` (공격자가 웹사이트 해킹으로 획득한 비밀번호)
   - 관리자 계정: **admin**
     - 사용자명: `admin`
     - 비밀번호는 공격자가 모름.
@@ -96,4 +96,9 @@ admin 계정의 데스크톱 폴더(C:\Users\Administrator\Desktop)는 일반 �
 flag.txt 파일은 관리자 권한을 가진 사용자만 읽을 수 있도록 설정한다.
 최종 목표
 참가자는 일반 사용자 계정으로 PC에 접근한 후, 권한 상승을 통해 관리자 권한을 획득하고 최종적으로 flag.txt 파일을 찾아 제출하는 것이 목표입니다.
+
+사용자 추가 방법
+https://answers.microsoft.com/ko-kr/windows/forum/all/windows-10-%EC%97%90%EC%84%9C/ebb6ad55-e69c-45a2-a194-ab38d6fd69c3
+
+
 
