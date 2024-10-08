@@ -1,14 +1,14 @@
 # Ignite
 
-![Logo.png](./git/ignite.png)
+![Logo.png](./CTF/ignite.png)
 
 > Team Firewall's First CTF Production Project
 
 ## Followers
 
+jinyeong001(장진영): 프로필 링크  
 JJH0204(정재호):     https://github.com/JJH0204  
 wlghd0280(김지홍):   프로필 링크  
-jinyeong001(장진영): 프로필 링크  
 kporosl(최민제):     프로필 링크  
 
 ## CTF_WEB
