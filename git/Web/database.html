@@ -71,16 +71,16 @@
         }
 
         .sidebar {
-        width: 200px;
-        background-color: #f5f5f5;
-        height: 100vh;
-        position: fixed;
-        top: 60px; /* 헤더 아래에 위치하도록 설정 */
-        left: -200px;
-        padding-top: 20px;
-        transition: 0.3s;
-        z-index: 1000;
-    }
+            width: 200px;
+            background-color: #f5f5f5;
+            height: 100vh;
+            position: fixed;
+            top: 60px; /* 헤더 아래에 위치하도록 설정 */
+            left: -200px;
+            padding-top: 20px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
 
         .sidebar a {
             display: block;
@@ -95,18 +95,32 @@
         }
 
         .content {
-        margin-left: auto;
-        margin-right: auto;
-        padding: 100px 20px 20px 20px; /* 패딩 위쪽을 100px로 수정하여 여유 공간 추가 */
-        background-color: #f9f9f9;
-        height: 100vh;
-        width: 80%;
-        text-align: center;
-        transition: 0.3s;
-    }
+            margin-left: auto;
+            margin-right: auto;
+            padding: 100px 20px 20px 20px;
+            background-color: #f9f9f9;
+            height: 100vh;
+            width: 80%;
+            transition: 0.3s;
+        }
 
         .content.active {
             margin-left: 200px;
+        }
+
+        .table-buttons {
+            margin-bottom: 20px; /* 버튼과 테이블 사이에 여백 추가 */
+        }
+        .btn-primary{
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #b71c1c;
         }
 
         .notice-area {
@@ -147,7 +161,7 @@
     <div class="header">
         <div class="header-top">
             <button class="toggle-btn" id="toggleSidebarBtn">≡</button>
-            <div class="brand">Dashboard</div>
+            <div class="brand">Database</div>
             <div class="user-info">
                 <span id="user-name" class="user-name">ID: admin</span>
                 <button class="logout-btn" id="logoutBtn">로그아웃</button>
@@ -167,10 +181,19 @@
 
     <!-- 메인 콘텐츠 -->
     <div class="content" id="mainContent">
-        <h2>Dashboard</h2>
-        <div class="notice-area">
-            <div class="notice-box">
-                공지사항
+        <h2>Database</h2>
+
+        <!-- 테이블 선택 버튼 -->
+        <div class="table-buttons">
+            <button class="btn btn-primary" onclick="showTable('table1')">테이블 1</button>
+            <button class="btn btn-primary" onclick="showTable('table2')">테이블 2</button>
+            <button class="btn btn-primary" onclick="showTable('table3')">테이블 3</button>
+        </div>
+
+        <!-- 데이터베이스 테이블 표시 영역 -->
+        <div class="notice-area" id="tableDisplayArea">
+            <div class="notice-box" id="tableContent">
+                선택된 테이블이 없습니다.
             </div>
         </div>
     </div>
@@ -220,9 +243,27 @@
 
         // 로그아웃 버튼 클릭 시 로그인 페이지로 이동
         const logoutBtn = document.getElementById('logoutBtn');
-        logoutBtn.addEventListener('click', function() {
+        logoutBtn.addEventListener('click', function () {
             window.location.href = 'login.html'; // 로그인 페이지로 이동
         });
+
+        // 테이블 표시 기능
+        function showTable(tableName) {
+            const tableContent = document.getElementById("tableContent");
+            switch (tableName) {
+                case 'table1':
+                    tableContent.textContent = "테이블 1의 데이터가 표시됩니다.";
+                    break;
+                case 'table2':
+                    tableContent.textContent = "테이블 2의 데이터가 표시됩니다.";
+                    break;
+                case 'table3':
+                    tableContent.textContent = "테이블 3의 데이터가 표시됩니다.";
+                    break;
+                default:
+                    tableContent.textContent = "선택된 테이블이 없습니다.";
+            }
+        }
     </script>
 </body>
 
