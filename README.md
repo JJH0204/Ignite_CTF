@@ -13,7 +13,7 @@ kporosl(최민제):     프로필 링크
 
 ## CTF_WEB
 
-(링크): https://jjh0204.github.io/Ignite_CTF_WEB/
+(링크): https://jjh0204.github.io/Ignite_CTF/
 
 ### 리소스 설치
 
