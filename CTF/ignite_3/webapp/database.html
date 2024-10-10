@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,8 +109,11 @@
 
         .table-buttons {
             margin-bottom: 20px; /* 버튼과 테이블 사이에 여백 추가 */
+            display: flex;
+            gap: 10px;
         }
-        .btn-primary{
+
+        .btn-primary {
             background-color: #d32f2f;
             color: white;
             padding: 10px 20px;
@@ -123,19 +125,25 @@
             background-color: #b71c1c;
         }
 
+        .table-area {
+            margin-top: 20px;
+	    display: flex;
+	    justify-content: center;
+        }
+
         .notice-area {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            height: 60vh;
         }
 
         .notice-box {
             border: 1px dashed #333;
             padding: 20px;
-            width: 200px;
+            width: 100%;
             text-align: center;
-            font-size: 20px;
+            font-size: 14px;
+            background-color: #f0f0f0;
         }
 
         .toggle-btn {
@@ -155,7 +163,6 @@
         }
     </style>
 </head>
-
 <body>
     <!-- 상단 헤더 -->
     <div class="header">
@@ -191,14 +198,16 @@
         </div>
 
         <!-- 데이터베이스 테이블 표시 영역 -->
-        <div class="notice-area" id="tableDisplayArea">
+        <div class="table-area" id="tableDisplayArea">
             <div class="notice-box" id="tableContent">
                 선택된 테이블이 없습니다.
             </div>
         </div>
     </div>
 
+    <!-- JavaScript 코드 -->
     <script>
+        // fetch 및 showTable 관련 JavaScript 코드 (변경 없음)
         // IP 주소 가져오기 및 표시
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
@@ -248,23 +257,56 @@
         });
 
         // 테이블 표시 기능
-        function showTable(tableName) {
-            const tableContent = document.getElementById("tableContent");
-            switch (tableName) {
-                case 'table1':
-                    tableContent.textContent = "테이블 1의 데이터가 표시됩니다.";
-                    break;
-                case 'table2':
-                    tableContent.textContent = "테이블 2의 데이터가 표시됩니다.";
-                    break;
-                case 'table3':
-                    tableContent.textContent = "테이블 3의 데이터가 표시됩니다.";
-                    break;
-                default:
-                    tableContent.textContent = "선택된 테이블이 없습니다.";
+// 테이블 표시 기능
+function showTable(tableName) {
+    const tableContent = document.getElementById("tableContent");
+    
+    let phpFile = '';
+    switch (tableName) {
+        case 'table1':
+            phpFile = 'item.php';
+            break;
+        case 'table2':
+            phpFile = 'user.php';
+            break;
+        case 'table3':
+            phpFile = 'table3.php';
+            break;
+        default:
+            tableContent.textContent = "선택된 테이블이 없습니다.";
+            return;
+    }
+
+    // PHP 파일에서 데이터 가져오기
+    fetch(phpFile)
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                // 테이블 헤더 생성
+                let tableHtml = '<table class="table table-bordered table-striped"><thead><tr>';
+                Object.keys(data[0]).forEach(key => {
+                    tableHtml += `<th>${key}</th>`;
+                });
+                tableHtml += '</tr></thead><tbody>';
+
+                // 각 행 데이터를 테이블에 추가
+                data.forEach(item => {
+                    tableHtml += '<tr>';
+                    Object.values(item).forEach(value => {
+                        tableHtml += `<td>${value}</td>`;
+                    });
+                    tableHtml += '</tr>';
+                });
+
+                tableHtml += '</tbody></table>';
+                tableContent.innerHTML = tableHtml;  // HTML에 테이블 출력
+            } else {
+                tableContent.textContent = "데이터가 없습니다.";
             }
-        }
+        })
+        .catch(error => console.error('데이터를 불러오는 중 오류 발생:', error));
+}
     </script>
 </body>
-
 </html>
+
