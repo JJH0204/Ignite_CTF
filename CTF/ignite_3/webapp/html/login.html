@@ -16,7 +16,7 @@
         <div class="checkbox">
             <input type="checkbox" id="remember-me"> 아이디 기억하기
         </div>
-        <p class="error-message" id="error-message">아이디 또는 비밀번호가 잘못되었습니다.</p>
+        <p class="error-message" id="error-message" style="display:none;">아이디 또는 비밀번호가 잘못되었습니다.</p>
         <button type="submit" class="login-btn">로그인</button>
     </form>
 </div>
@@ -26,16 +26,30 @@
         event.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        
-        // TODO: 로그인 로직 수정
-        if (username !== 'admin' || password !== '1234') {
-            document.getElementById('error-message').style.display = 'block';
-        } else {
-            // 실제 로그인 처리 로직
-            window.location.href = 'dashboard.html'; // 대시보드 페이지로 이동
-        }
+
+        // 로그인 요청 보내기
+        fetch('login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                sessionStorage.setItem('loggedIn', 'true');
+                window.location.href = 'dashboard.html'; // 대시보드 페이지로 이동
+            } else {
+                document.getElementById('error-message').style.display = 'block'; // 에러 메시지 표시
+            }
+        })
+        .catch(error => {
+            console.error('로그인 요청 실패:', error);
+        });
     });
 </script>
 
 </body>
 </html>
+
