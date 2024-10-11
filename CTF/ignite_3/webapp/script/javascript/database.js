@@ -6,10 +6,10 @@ function showTable(tableName) {
     let phpFile = '';
     switch (tableName) {
         case 'table1':
-            phpFile = 'item.php';
+            phpFile = 'get_itemDB.php';
             break;
         case 'table2':
-            phpFile = 'user.php';
+            phpFile = 'get_userDB.php';
             break;
         case 'table3':
             phpFile = 'table3.php';
