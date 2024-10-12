@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$jsonFile = 'users.json';
+$jsonFile = '../../json/users.json';
 
 if (!file_exists($jsonFile)) {
     echo json_encode(['success' => false, 'error' => '파일이 존재하지 않습니다.']);

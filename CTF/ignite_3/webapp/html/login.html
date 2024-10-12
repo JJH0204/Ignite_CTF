@@ -22,32 +22,32 @@
 </div>
 
 <script>
-    document.getElementById('login-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-        // 로그인 요청 보내기
-        fetch('login.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                sessionStorage.setItem('loggedIn', 'true');
-                window.location.href = 'dashboard.html'; // 대시보드 페이지로 이동
-            } else {
-                document.getElementById('error-message').style.display = 'block'; // 에러 메시지 표시
-            }
-        })
-        .catch(error => {
-            console.error('로그인 요청 실패:', error);
+            // 로그인 요청 보내기
+            fetch('../script/php/login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        sessionStorage.setItem('loggedIn', 'true');
+                        window.location.href = 'dashboard.html'; // 대시보드 페이지로 이동
+                    } else {
+                        document.getElementById('error-message').style.display = 'block'; // 에러 메시지 표시
+                    }
+                })
+                .catch(error => {
+                    console.error('로그인 요청 실패:', error);
+                });
         });
-    });
 </script>
 
 </body>
