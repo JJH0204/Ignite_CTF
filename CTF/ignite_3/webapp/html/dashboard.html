@@ -9,7 +9,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/title_style.css">
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // 로그인 여부 확인
             if (!sessionStorage.getItem('loggedIn')) {
                 alert('로그인 후 접근할 수 있습니다.');
@@ -54,15 +54,19 @@
 
     <!-- 메인 콘텐츠 -->
     <div class="content" id="mainContent">
-        <div class="notice-area">
+        <!-- 공지사항 및 사용자 관리 버튼 -->
+        <div class="button-group my-3">
+            <button class="btn btn-primary" id="noticeBtn">공지사항</button>
+        </div>
+
+        <div class="notice-area" id="noticeArea">
             <div class="notice-box">
                 공지사항
             </div>
         </div>
     </div>
 
-    <script src="../script/javascript/stable.js"></script>
+        <script src="../script/javascript/stable.js"></script>
 </body>
 
 </html>
-

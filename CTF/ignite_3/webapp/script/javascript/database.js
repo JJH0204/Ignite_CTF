@@ -7,15 +7,15 @@ function showTable(tableName) {
     switch (tableName) {
         case 'table1':
             // table1 선택 시 호출할 PHP 파일 지정
-            phpFile = 'get_itemDB.php';
+            phpFile = '/script/php/get_itemDB.php';
             break;
         case 'table2':
             // table2 선택 시 호출할 PHP 파일 지정
-            phpFile = 'get_userDB.php';
+            phpFile = '/script/php/get_userDB.php';
             break;
         case 'table3':
             // table3 선택 시 호출할 PHP 파일 지정
-            phpFile = 'table3.php';
+            phpFile = '/script/php/table3.php';
             break;
         default:
             // 아무 테이블도 선택되지 않은 경우 안내 메시지 표시하고 함수 종료
