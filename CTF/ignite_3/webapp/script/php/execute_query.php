@@ -1,45 +1,40 @@
 <?php
-// 데이터베이스 연결 정보 설정
-$host = '127.0.0.1'; // 데이터베이스 서버 주소
-$db = 'GameDB'; // 사용할 데이터베이스 이름
-$user = 'root'; // 데이터베이스 사용자명
-$pass = '1515'; // 데이터베이스 비밀번호
-$charset = 'utf8mb4'; // 문자 인코딩 설정 (UTF-8 사용)
+// 데이터베이스 연결 설정
+$host = '127.0.0.1'; // DB 호스트 주소를 설정. 여기서는 로컬 서버 주소인 127.0.0.1을 사용
+$dbname = 'GameDB'; // 사용할 데이터베이스의 이름을 설정 (GameDB)
+$user = 'root'; // 데이터베이스 사용자명 (root)
+$password = '1515'; // 데이터베이스 사용자 비밀번호 (1515)
 
-// PDO를 사용하여 데이터베이스 연결 설정
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset"; // DSN 문자열 생성
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, // 오류 발생 시 예외를 발생시키도록 설정
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // 연관 배열로 데이터를 반환하도록 설정
-    PDO::ATTR_EMULATE_PREPARES   => false, // 실제 프리페어드 스테이트먼트를 사용하도록 설정
-];
+// MariaDB 연결
+$conn = new mysqli($host, $user, $password, $dbname); // mysqli 객체를 사용하여 데이터베이스에 연결
 
-try {
-    // PDO 객체를 생성하여 데이터베이스 연결을 시도
-    $pdo = new PDO($dsn, $user, $pass, $options);
-
-    // JSON 형태로 POST 요청의 데이터를 가져옴
-    $data = json_decode(file_get_contents('php://input'), true); // JSON 형식으로 변환하여 $data 변수에 저장
-    $query = $data['query']; // 클라이언트로부터 받은 SQL 쿼리를 변수에 저장
-
-    // SQL 쿼리 실행
-    if (stripos($query, 'select') === 0) { // 쿼리가 'SELECT'로 시작하는지 확인
-        // SELECT 쿼리인 경우 실행
-        $stmt = $pdo->query($query); // 쿼리를 실행하고 결과를 가져옴
-        $items = $stmt->fetchAll(); // 결과의 모든 행을 연관 배열로 가져옴
-        header('Content-Type: application/json'); // 응답의 Content-Type을 JSON으로 설정
-        echo json_encode($items); // 결과 데이터를 JSON 형식으로 인코딩하여 출력
-    } else {
-        // INSERT, UPDATE, DELETE 쿼리인 경우
-        $stmt = $pdo->prepare($query); // 쿼리를 준비
-        $stmt->execute(); // 준비된 쿼리를 실행
-        // 성공적으로 실행된 후의 응답을 JSON으로 반환
-        header('Content-Type: application/json'); // 응답의 Content-Type을 JSON으로 설정
-        echo json_encode(['message' => 'Query executed successfully.']); // 성공 메시지 반환
-    }
-} catch (\PDOException $e) {
-    // 오류 발생 시 JSON 형식으로 오류 메시지를 반환
-    header('Content-Type: application/json'); // 응답의 Content-Type을 JSON으로 설정
-    echo json_encode(['error' => $e->getMessage()]); // 예외의 오류 메시지를 JSON으로 인코딩하여 출력
+// 연결 상태 확인
+if ($conn->connect_error) { // 연결이 실패했는지 확인
+    die("Connection failed: " . $conn->connect_error); // 연결에 실패하면 오류 메시지를 출력하고 스크립트를 종료
 }
+
+// 클라이언트에서 SQL 쿼리를 받아옴
+$sql_query = $_POST['sql']; // POST 요청으로 전달된 'sql' 데이터를 가져와 변수에 저장
+
+// SQL 쿼리 실행
+$result = $conn->query($sql_query); // 사용자가 입력한 SQL 쿼리를 실행하고 결과를 $result에 저장
+
+// 실행 결과 확인
+if ($result) { // 쿼리 실행이 성공했는지 확인
+    if ($result->num_rows > 0) { // 쿼리 실행 결과에 데이터 행이 있는지 확인
+        // 결과를 JSON 형식으로 반환
+        $rows = array(); // 결과 데이터를 저장할 빈 배열 선언
+        while($row = $result->fetch_assoc()) { // 결과를 하나씩 가져와 연관 배열로 변환
+            $rows[] = $row; // 변환된 결과를 $rows 배열에 추가
+        }
+        echo json_encode($rows); // 결과 배열을 JSON 형식으로 변환하여 클라이언트에 반환
+    } else {
+        echo json_encode(["message" => "결과가 없습니다."]); // 결과가 없는 경우 메시지를 JSON 형식으로 반환
+    }
+} else {
+    echo json_encode(["error" => "쿼리 실행 오류: " . $conn->error]); // 쿼리 실행에 실패한 경우 오류 메시지를 JSON 형식으로 반환
+}
+
+// 연결 종료
+$conn->close(); // 데이터베이스 연결을 종료
 ?>
