@@ -27,7 +27,7 @@ if ($result) { // 쿼리 실행이 성공했는지 확인
         while($row = $result->fetch_assoc()) { // 결과를 하나씩 가져와 연관 배열로 변환
             $rows[] = $row; // 변환된 결과를 $rows 배열에 추가
         }
-        echo json_encode($rows); // 결과 배열을 JSON 형식으로 변환하여 클라이언트에 반환
+        echo json_encode($rows, JSON_UNESCAPED_UNICODE); // 결과 배열을 JSON 형식으로 변환하여 클라이언트에 반환
     } else {
         echo json_encode(["message" => "결과가 없습니다."]); // 결과가 없는 경우 메시지를 JSON 형식으로 반환
     }
