@@ -1,9 +1,11 @@
 <?php
+session_start();
+
 // 데이터베이스 연결 정보 설정
 $host = '127.0.0.1'; // 데이터베이스 서버 주소
 $db = 'GameDB'; // 사용할 데이터베이스 이름
-$user = 'root'; // 데이터베이스 사용자명
-$pass = '1515'; // 데이터베이스 비밀번호
+$user = $_SESSION['username']; // 데이터베이스 사용자명
+$pass = $_SESSION['password']; // 데이터베이스 비밀번호
 $charset = 'utf8mb4'; // 문자 인코딩 설정 (UTF-8을 사용하여 다양한 문자 지원)
 
 // PDO를 사용하여 데이터베이스 연결 설정
