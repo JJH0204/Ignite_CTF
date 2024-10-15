@@ -1,17 +1,15 @@
 <?php
-session_start(); // 세션 시작
-
 // UTF-8 인코딩을 명시적으로 설정
 header('Content-Type: text/html; charset=utf-8');
 
 // 데이터베이스 연결 설정
 $host = '127.0.0.1'; // DB 호스트 주소를 설정. 여기서는 로컬 서버 주소인 127.0.0.1을 사용
 $dbname = 'GameDB'; // 사용할 데이터베이스의 이름을 설정 (GameDB)
-$user = $_SESSION['username']; // 세션에서 사용자 ID 가져오기
-$password = $_SESSION['password']; // 세션에서 사용자 PW 가져오기
+$user = 'root'; // 데이터베이스 사용자명 (root)
+$password = '1515'; // 데이터베이스 사용자 비밀번호 (1515)
 
 // MariaDB 연결
-$conn = new mysqli($host, $user, $password);
+$conn = new mysqli($host, $user, $password, $dbname);
 
 // 연결 상태 확인
 if ($conn->connect_error) {

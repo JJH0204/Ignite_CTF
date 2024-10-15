@@ -1,31 +1,5 @@
 // fetch 및 showTable 관련 JavaScript 코드 (변경 없음)
 // IP 주소 가져오기 및 표시
-// fetch('https://api.ipify.org?format=json')
-//     .then(response => response.json())
-//     .then(data => {
-//         document.getElementById("user-ip").textContent = data.ip;
-//     })
-//     .catch(() => {
-//         // 실패 시 WebRTC 방식을 이용하여 IP 주소 가져오기
-//         let ipFound = false;
-//         const rtc = new RTCPeerConnection();
-//         rtc.createDataChannel('');
-//         rtc.createOffer().then(offer => rtc.setLocalDescription(offer));
-//         rtc.onicecandidate = function (event) {
-//             if (!event || !event.candidate || !event.candidate.candidate || ipFound) return;
-//             const candidate = event.candidate.candidate;
-//             const ipMatch = candidate.match(/\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/);
-//             if (ipMatch) {
-//                 document.getElementById("user-ip").textContent = ipMatch[0];
-//                 ipFound = true;
-//             }
-//         };
-//         // 실패 시 예외 처리
-//         setTimeout(() => {
-//             if (!ipFound) document.getElementById("user-ip").textContent = "IP 가져오기 실패";
-//         }, 2000);
-//     });
-
 fetch('../script/php/get_ip.php')
     .then(response => response.json()) // 응답 데이터를 JSON 형식으로 변환
     .then(data => {
@@ -43,6 +17,12 @@ fetch('../script/php/get_ip.php')
 const toggleSidebarBtn = document.getElementById('toggleSidebarBtn'); // 사이드바 토글 버튼 요소
 const sidebar = document.getElementById('sidebar'); // 사이드바 요소
 const mainContent = document.getElementById('mainContent'); // 메인 콘텐츠 요소
+
+// 페이지 로드 시 사이드바가 열린 상태로 설정
+window.addEventListener('DOMContentLoaded', function() {
+    sidebar.style.left = "0"; // 사이드바를 보이게 설정
+    mainContent.classList.add('active'); // 메인 콘텐츠에 'active' 클래스 추가
+});
 
 // 토글 버튼 클릭 이벤트 리스너 추가
 toggleSidebarBtn.addEventListener('click', function () {
