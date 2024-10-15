@@ -14,8 +14,8 @@ if ($data === null) {
     exit;
 }
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = $_POST['username']; // username을 POST로부터 가져옵니다.
+$password = $_POST['password']; // password를 POST로부터 가져옵니다.
 
 // 로그인 검증
 $authenticated = false;
@@ -27,9 +27,13 @@ foreach ($data as $user) {
 }
 
 if ($authenticated) {
-    echo json_encode(['success' => true]);
+    session_start(); // 세션 시작
+    $_SESSION['username'] = $username; // 세션에 사용자 ID 저장
+    $_SESSION['password'] = $password; // 세션에 사용자 PW 저장
+
+    // JSON 응답에 사용자 이름 포함
+    echo json_encode(['success' => true, 'username' => $username]);
 } else {
     echo json_encode(['success' => false]);
 }
 ?>
-

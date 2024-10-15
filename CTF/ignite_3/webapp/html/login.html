@@ -39,6 +39,7 @@
                 .then(data => {
                     if (data.success) {
                         sessionStorage.setItem('loggedIn', 'true');
+                        sessionStorage.setItem('username', data.username);
                         window.location.href = 'dashboard.html'; // 대시보드 페이지로 이동
                     } else {
                         document.getElementById('error-message').style.display = 'block'; // 에러 메시지 표시
