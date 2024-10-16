@@ -7,11 +7,12 @@ header('Content-Type: text/html; charset=utf-8');
 $host = '127.0.0.1'; // DB 호스트 주소를 설정. 여기서는 로컬 서버 주소인 127.0.0.1을 사용
 $dbname = 'GameDB'; // 사용할 데이터베이스의 이름을 설정 (GameDB)
 // $user = $_SESSION['username']; // 데이터베이스 사용자명
-$user = isset($_SERVER['HTTP_X_USERNAME']) ? $_SERVER['HTTP_X_USERNAME'] : ''; // X-Username 헤더에서 사용자 ID 가져오기
+$user = isset($_SERVER['HTTP_REQUESTER']) ? $_SERVER['HTTP_REQUESTER'] : ''; // X-Username 헤더에서 사용자 ID 가져오기
+$decoded_user = base64_decode($user);
 $password = $_SESSION['password']; // 데이터베이스 비밀번호
 
 // MariaDB 연결
-$conn = new mysqli($host, $user, $password, $dbname);
+$conn = new mysqli($host, $decoded_user, $password, $dbname);
 
 // 연결 상태 확인
 if ($conn->connect_error) {
