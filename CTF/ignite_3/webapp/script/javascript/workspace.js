@@ -8,8 +8,8 @@ function executeQuery() {
         return;
     }
 
-    const username = sessionStorage.getItem('username');
-    const encoded_username = btoa(username);
+    const username = sessionStorage.getItem('username'); // 현재 로그인한 username
+    const encoded_username = btoa(username); // Encodeing username to base64
     const phpFile = '/script/php/execute_query.php';
     const phpFileWithParam = `${phpFile}?username=${encodeURIComponent(username)}`; 
 
