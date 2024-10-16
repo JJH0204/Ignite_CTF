@@ -4,8 +4,7 @@ session_start();
 // 데이터베이스 연결 정보 설정
 $host = '127.0.0.1'; // 데이터베이스 서버 주소
 $db = 'GameDB'; // 사용할 데이터베이스 이름
-// $user = $_SESSION['username']; // 세션에서 사용자 ID 가져오기
-$user = isset($_SERVER['HTTP_X_USERNAME']) ? $_SERVER['HTTP_X_USERNAME'] : ''; // X-Username 헤더에서 사용자 ID 가져오기
+$user = $_SESSION['username']; // 세션에서 사용자 ID 가져오기
 $pass = $_SESSION['password']; // 세션에서 사용자 PW 가져오기
 $charset = 'utf8mb4'; // 문자 인코딩 설정 (UTF-8을 사용하여 다양한 문자 지원)
 

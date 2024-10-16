@@ -1,14 +1,15 @@
 function executeQuery() {
     // 사용자가 입력한 SQL 쿼리 가져오기
     const sqlQuery = document.querySelector('.sql-editor').value;
-    const username = sessionStorage.getItem('username');
-    const phpFile = '/script/php/execute_query.php';
+    
     // 쿼리가 비어있지 않은지 확인
     if (!sqlQuery.trim()) {
         alert("SQL 쿼리를 입력해주세요.");
         return;
     }
 
+    const username = sessionStorage.getItem('username');
+    const phpFile = '/script/php/execute_query.php';
     const phpFileWithParam = `${phpFile}?username=${encodeURIComponent(username)}`; 
 
     // PHP 파일로 SQL 쿼리 전송 (AJAX 사용)
@@ -16,14 +17,11 @@ function executeQuery() {
         method: 'POST', // HTTP POST 요청을 사용하여 데이터를 전송함
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded', // 요청의 데이터 형식을 URL 인코딩 형식으로 설정
+            'X-Username': username, // 요청 헤더에 사용자 이름 추가
         },
         body: new URLSearchParams({
             'sql': sqlQuery // 전송할 데이터로 사용자가 입력한 SQL 쿼리를 설정함
         })
-        method: 'GET',
-        headers : {
-            'X-Username': username, // 요청 헤더에 사용자 이름 추가
-        }
     })
     .then(response => response.json()) // 서버로부터 받은 응답을 JSON 형식으로 파싱
     .then(data => {

@@ -27,12 +27,7 @@ function showTable(tableName) {
     const phpFileWithParam = `${phpFile}?username=${encodeURIComponent(username)}`;  
 
     // PHP 파일로부터 데이터 가져오기
-    fetch(phpFileWithParam, {
-        method: 'GET',
-        headers : {
-            'X-Username': username, // 요청 헤더에 사용자 이름 추가
-        }
-    })
+    fetch(phpFileWithParam)
     .then(response => response.json()) // 서버 응답을 JSON 형식으로 변환
     .then(data => {
         // 데이터가 있으면 테이블 생성 시작
