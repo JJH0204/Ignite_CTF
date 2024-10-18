@@ -27,7 +27,6 @@
             window.location.href = 'login.html'; // 로그인 페이지로 이동
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -84,7 +83,7 @@
                     <tr>
                         <td>JH</td>
                         <td>jh@firewall.com</td>
-                        <td><button class="btn btn-primary reset_btn">재설정</button></td>
+                        <td><button class="btn btn-primary">재설정</button></td>
                         <td>
                             <select class="form-select">
                                 <option>일반 사용자</option>
@@ -95,7 +94,7 @@
                     <tr>
                         <td>JiH</td>
                         <td>jih@firewall.com</td>
-                        <td><button class="btn btn-primary reset_btn">재설정</button></td>
+                        <td><button class="btn btn-primary">재설정</button></td>
                         <td>
                             <select class="form-select">
                                 <option>일반 사용자</option>
@@ -107,7 +106,7 @@
                     <tr>
                         <td>JY</td>
                         <td>jy@firewall.com</td>
-                        <td><button class="btn btn-primary reset_btn">재설정</button></td>
+                        <td><button class="btn btn-primary">재설정</button></td>
                         <td>
                             <select class="form-select">
                                 <option>일반 사용자</option>
@@ -118,7 +117,7 @@
                     <tr>
                         <td>MJ</td>
                         <td>mj@firewall.com</td>
-                        <td><button class="btn btn-primary reset_btn">재설정</button></td>
+                        <td><button class="btn btn-primary">재설정</button></td>
                         <td>
                             <select class="form-select">
                                 <option>일반 사용자</option>
@@ -130,61 +129,7 @@
             </table>
         </div>
 
-        <!-- 비밀번호 재설정 모달 -->
-        <div class="modal fade" id="resetPasswordModal" tabindex="-1" aria-labelledby="resetPasswordModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="resetPasswordModalLabel">비밀번호 재설정</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="password" id="newPassword" class="form-control" placeholder="새 비밀번호">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary" id="confirmResetBtn">확인</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            // 비밀번호 재설정 버튼 클릭 시 이벤트
-            document.querySelectorAll('.reset_btn').forEach(function(button) {
-                button.addEventListener('click', function() {
-                    const username = this.closest('tr').querySelector('td:first-child').innerText; // 해당 아이디 가져오기
-                    const modal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
-                    modal.show(); // 모달 열기
         
-                    document.getElementById('confirmResetBtn').onclick = function() {
-                        const newPassword = document.getElementById('newPassword').value;
-        
-                        if (newPassword) {
-                            // 비밀번호 변경 요청
-                            fetch('../php/update_password.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({ username, newPassword })
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                alert(data.message);
-                                modal.hide(); // 모달 닫기
-                                // 페이지 새로 고침 또는 사용자 리스트 갱신
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                            });
-                        } else {
-                            alert('새 비밀번호를 입력해 주세요.');
-                        }
-                    };
-                });
-            });
-        </script>
 
         <!-- DB 로그 (초기에 숨김 상태) -->
         <div class="db-log d-none" id="dbLog">

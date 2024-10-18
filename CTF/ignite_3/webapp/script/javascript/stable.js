@@ -44,3 +44,41 @@ logoutBtn.addEventListener('click', function () {
     // 클릭 시 로그인 페이지로 이동
     window.location.href = 'login.html';
 });
+
+// 비밀번호 재설정 버튼 클릭 시 이벤트
+document.querySelectorAll('.reset_btn').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const username = this.closest('tr').querySelector('td:first-child').innerText; // 해당 아이디 가져오기
+        const modal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
+        modal.show();
+
+        document.getElementById('confirmResetBtn').onclick = function() {
+            const newPassword = document.getElementById('newPassword').value;
+            console.log('username:', username, 'newPassword:', newPassword); // 로그 추가
+
+            if (newPassword) {
+                // 비밀번호 변경 요청
+                fetch('../php/update_password.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, newPassword })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    modal.hide();
+                    // 페이지 새로 고침 또는 사용자 리스트 갱신
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+                alert('새 비밀번호를 입력해 주세요.');
+            }
+        };
+    });
+});
+
+
