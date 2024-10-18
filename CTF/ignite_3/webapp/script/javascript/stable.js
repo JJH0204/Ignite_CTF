@@ -52,12 +52,13 @@ document.querySelectorAll('.reset_btn').forEach(function(button) {
         const modal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
         modal.show();
 
-        document.getElementById('confirmResetBtn').onclick = function() {
-            const newPassword = document.getElementById('newPassword').value;\
+        const confirmBtn = document.getElementById('confirmResetBtn');
+        confirmBtn.onclick = function() {
+            const newPassword = document.getElementById('newPassword').value;
 
             if (newPassword) {
                 // 비밀번호 변경 요청
-                fetch('../php/update_password.php', {
+                fetch('script/php/update_password.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
