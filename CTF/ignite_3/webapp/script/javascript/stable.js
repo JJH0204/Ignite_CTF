@@ -53,8 +53,7 @@ document.querySelectorAll('.reset_btn').forEach(function(button) {
         modal.show();
 
         document.getElementById('confirmResetBtn').onclick = function() {
-            const newPassword = document.getElementById('newPassword').value;
-            console.log('username:', username, 'newPassword:', newPassword); // 로그 추가
+            const newPassword = document.getElementById('newPassword').value;\
 
             if (newPassword) {
                 // 비밀번호 변경 요청

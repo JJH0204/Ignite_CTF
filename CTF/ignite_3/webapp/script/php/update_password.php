@@ -2,11 +2,11 @@
 // update_password.php
 header('Content-Type: application/json');
 $input = json_decode(file_get_contents('php://input'), true);
-$username = $data['username'];
-$newPassword = $data['newPassword'];
+$username = $input['username'];
+$newPassword = $input['newPassword'];
 
 // user.json 파일 업데이트
-$jsonFile = '../../json/user.json';
+$jsonFile = '../../json/users.json';
 $jsonData = json_decode(file_get_contents($jsonFile), true);
 
 foreach ($jsonData as &$user) {
