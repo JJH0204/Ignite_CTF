@@ -52,20 +52,22 @@ document.querySelectorAll('.reset_btn').forEach(button => {
         const modal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
         modal.show();
 
-        document.getElementById('confirmResetBtn').onclick = () => {
+        const confirmBtn = document.getElementById('confirmResetBtn');
+        confirmBtn.onclick = function() {
             const newPassword = document.getElementById('newPassword').value;
 
             if (newPassword) {
-                fetch('/script/php/update_password.php', {
+                // 비밀번호 변경 요청
+                fetch('script/php/update_password.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, newPassword })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    alert(data.message || '비밀번호 재설정 실패.');
+                    alert(data.message);
                     modal.hide();
-                    document.getElementById('newPassword').value = '';
+                    // 페이지 새로 고침 또는 사용자 리스트 갱신
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -77,3 +79,5 @@ document.querySelectorAll('.reset_btn').forEach(button => {
         };
     });
 });
+
+
