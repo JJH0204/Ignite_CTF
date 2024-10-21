@@ -192,7 +192,41 @@
             document.getElementById('userList').classList.add('d-none');
             // DB 로그 보이기
             document.getElementById('dbLog').classList.remove('d-none');
+
+            // 사용자 데이터 로드
+            fetch('/json/users.json')
+                 .then(response => response.json())
+                .then(data => {
+                    console.log('User data:', data);
+                 populateUserList(data);  // 사용자 데이터를 테이블에 표시
+             })
+            .catch(error => {
+                   console.error('Error fetching users.json:', error);
+                  alert('사용자 데이터를 가져오는 중 문제가 발생했습니다.');
+             });
         });
+
+        function populateUserList(users) {
+    const tbody = document.querySelector('#userList tbody');
+    tbody.innerHTML = '';  // 기존 데이터 제거
+
+    users.forEach(user => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${user.id}</td>
+            <td>${user.email}</td>
+            <td><button class="btn btn-primary reset_btn">재설정</button></td>
+            <td>
+                <select class="form-select">
+                    <option ${user.role === 'user' ? 'selected' : ''}>일반 사용자</option>
+                    <option ${user.role === 'admin' ? 'selected' : ''}>관리자</option>
+                </select>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
 
         // 비밀번호 재설정 버튼 클릭 시 이벤트
         document.querySelectorAll('.reset_btn').forEach(function(button) {
@@ -230,7 +264,7 @@
             });
     </script>
 
-    <script src="../script/javascript/stable.js"></script>
+    <script src="/script/javascript/stable.js"></script>
 </body>
 
 </html>

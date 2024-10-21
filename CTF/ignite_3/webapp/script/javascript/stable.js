@@ -46,33 +46,30 @@ logoutBtn.addEventListener('click', function () {
 });
 
 // 비밀번호 재설정 버튼 클릭 시 이벤트
-document.querySelectorAll('.reset_btn').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const username = this.closest('tr').querySelector('td:first-child').innerText; // 해당 아이디 가져오기
+document.querySelectorAll('.reset_btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const username = button.closest('tr').querySelector('td:first-child').innerText;
         const modal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
         modal.show();
 
-        const confirmBtn = document.getElementById('confirmResetBtn');
-        confirmBtn.onclick = function() {
+        document.getElementById('confirmResetBtn').onclick = () => {
             const newPassword = document.getElementById('newPassword').value;
 
             if (newPassword) {
-                // 비밀번호 변경 요청
-                fetch('script/php/update_password.php', {
+                fetch('/script/php/update_password.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, newPassword })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    alert(data.message);
+                    alert(data.message || '비밀번호 재설정 실패.');
                     modal.hide();
-                    // 페이지 새로 고침 또는 사용자 리스트 갱신
+                    document.getElementById('newPassword').value = '';
                 })
                 .catch(error => {
                     console.error('Error:', error);
+                    alert('비밀번호 재설정 중 오류가 발생했습니다.');
                 });
             } else {
                 alert('새 비밀번호를 입력해 주세요.');
@@ -80,5 +77,3 @@ document.querySelectorAll('.reset_btn').forEach(function(button) {
         };
     });
 });
-
-
