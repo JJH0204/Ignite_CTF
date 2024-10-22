@@ -28,9 +28,16 @@ $stmt->bind_param('ss', $newPassword, $username); // 비밀번호와 사용자�
 
 // 쿼리 실행 및 결과 처리
 if ($stmt->execute()) {
-    echo json_encode(['message' => '비밀번호가 성공적으로 재설정되었습니다.']);
+    // 테이블 비밀번호 업데이트 성공 후 MySQL 사용자 비밀번호 변경 쿼리 실행
+    $alterUserQuery = "ALTER USER '$username'@'localhost' IDENTIFIED BY '$newPassword'";
+    
+    if ($conn->query($alterUserQuery) === TRUE) {
+        echo json_encode(['message' => '비밀번호가 성공적으로 재설정되었습니다.']);
+    } else {
+        echo json_encode(['message' => 'MySQL 사용자 비밀번호 변경 실패: ' . $conn->error]);
+    }
 } else {
-    echo json_encode(['message' => '비밀번호 재설정 실패.']);
+    echo json_encode(['message' => '비밀번호 재설정 실패: ' . $stmt->error]);
 }
 
 // 연결 종료
