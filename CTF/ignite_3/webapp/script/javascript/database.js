@@ -15,7 +15,7 @@ function showTable(tableName) {
             break;
         case 'table3':
             // table3 선택 시 호출할 PHP 파일 지정
-            phpFile = '/script/php/table3.php';
+            phpFile = '/script/php/test.php';
             break;
         default:
             // 아무 테이블도 선택되지 않은 경우 안내 메시지 표시하고 함수 종료

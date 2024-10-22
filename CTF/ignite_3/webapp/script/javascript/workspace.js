@@ -18,7 +18,7 @@ function executeQuery() {
         method: 'POST', // HTTP POST 요청을 사용하여 데이터를 전송함
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded', // 요청의 데이터 형식을 URL 인코딩 형식으로 설정
-            'Requester': encoded_username, // 요청 헤더에 사용자 이름 추가
+            'Requester': username, // 요청 헤더에 사용자 이름 추가
         },
         body: new URLSearchParams({
             'sql': sqlQuery // 전송할 데이터로 사용자가 입력한 SQL 쿼리를 설정함

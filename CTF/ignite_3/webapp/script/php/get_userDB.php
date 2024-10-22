@@ -3,7 +3,7 @@ session_start();
 
 // 데이터베이스 연결 정보 설정
 $host = '127.0.0.1'; // 데이터베이스 서버 주소
-$db = 'GameDB'; // 사용할 데이터베이스 이름
+$db = 'publicDB'; // 사용할 데이터베이스 이름
 $user = $_SESSION['username']; // 세션에서 사용자 ID 가져오기
 $pass = $_SESSION['password']; // 세션에서 사용자 PW 가져오기
 $charset = 'utf8mb4'; // 문자 인코딩 설정 (UTF-8을 사용하여 다양한 문자 지원)
@@ -25,12 +25,7 @@ try {
 }
 
 // 데이터베이스에서 user 테이블의 데이터 조회
-if ($user == 'admin') {
-    $stmt = $pdo->query('SELECT userID, username, password, email, phoneNumber, createDate, role, birthDate FROM user'); 
-} else {
-    $stmt = $pdo->query('SELECT userID, username, password, email, phoneNumber, createDate, role, birthDate FROM public_user'); 
-}
-// 'user' 테이블에서 필요한 모든 컬럼을 선택하는 쿼리 실행
+$stmt = $pdo->query('SELECT * FROM dbusers');
 $item = $stmt->fetchAll();  // 모든 데이터 행을 가져와 $item 변수에 저장 (연관 배열 형태)
 
 // JSON 형식으로 결과 반환

@@ -20,6 +20,20 @@
             document.getElementById('user-name').innerText = 'ID: ' + sessionStorage.getItem('username');
         });
 
+        // 서버에서 세션 정보를 가져옴
+        fetch('/script/php/public.php')
+            .then(response => response.json())
+            .then(data => {
+                if (data.username === 'public') {
+                    // public 사용자일 경우 Run 버튼 비활성화
+                    document.querySelector('.run-btn').disabled = true;
+                    document.querySelector('.run-btn').innerText = 'Run (권한 없음)';
+                }
+            })
+            .catch(error => {
+                console.error('세션 정보 로드 오류:', error);
+            });
+
         // 로그아웃 처리
         function logout() {
             sessionStorage.removeItem('loggedIn'); // 세션 삭제

@@ -251,7 +251,7 @@
                             .then(data => {
                                 alert(data.message);
                                 modal.hide(); // 모달 닫기
-                                // 페이지 새로 고침 또는 사용자 리스트 갱신
+                                window.location.reload(); // 페이지 새로 고침 또는 사용자 리스트 갱신
                             })
                             .catch(error => {
                                 console.error('Error:', error);

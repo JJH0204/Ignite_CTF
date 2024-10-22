@@ -19,7 +19,7 @@ $username = $_POST['username']; // username을 POST로부터 가져옵니다.
 $password = $_POST['password']; // password를 POST로부터 가져옵니다.
 
 // SQL 쿼리 작성 (username과 password가 일치하는지 확인)
-$sql = "SELECT * FROM adminDB.users WHERE username = ? AND password = ?";
+$sql = "SELECT * FROM adminDB.dbusers WHERE username = ? AND password = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $username, $password); // 사용자 입력을 안전하게 바인딩
 $stmt->execute();
@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
     session_start(); // 세션 시작
     $_SESSION['username'] = $username; // 세션에 사용자 이름 저장
     $_SESSION['password'] = $password; // 세션에 비밀번호 저장
-    
+
     echo json_encode(['success' => true, 'username' => $username]);
 } else {
     // 인증 실패

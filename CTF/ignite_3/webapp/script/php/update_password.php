@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 }
 
 // 비밀번호 업데이트 쿼리 준비
-$stmt = $conn->prepare("UPDATE users SET password = ? WHERE username = ?");
+$stmt = $conn->prepare("UPDATE dbusers SET password = ? WHERE username = ?");
 $stmt->bind_param('ss', $newPassword, $username); // 비밀번호와 사용자명 바인딩
 
 // 쿼리 실행 및 결과 처리
@@ -33,6 +33,7 @@ if ($stmt->execute()) {
     
     if ($conn->query($alterUserQuery) === TRUE) {
         echo json_encode(['message' => '비밀번호가 성공적으로 재설정되었습니다.']);
+        
     } else {
         echo json_encode(['message' => 'MySQL 사용자 비밀번호 변경 실패: ' . $conn->error]);
     }
