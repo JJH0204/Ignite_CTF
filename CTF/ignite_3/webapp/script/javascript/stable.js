@@ -46,33 +46,16 @@ logoutBtn.addEventListener('click', function () {
 });
 
 // 비밀번호 재설정 버튼 클릭 시 이벤트
-document.querySelectorAll('.reset_btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const username = button.closest('tr').querySelector('td:first-child').innerText;
+document.querySelectorAll('.reset_btn').forEach(function (button) {
+    button.addEventListener('click', function () {
+        const username = this.getAttribute('data-id'); // 해당 사용자의 ID (username)를 가져옴
         const modal = new bootstrap.Modal(document.getElementById('resetPasswordModal'));
-        modal.show();
+        modal.show(); // 모달 열기
 
-        const confirmBtn = document.getElementById('confirmResetBtn');
-        confirmBtn.onclick = function() {
+        document.getElementById('confirmResetBtn').onclick = function () {
             const newPassword = document.getElementById('newPassword').value;
-
             if (newPassword) {
-                // 비밀번호 변경 요청
-                fetch('script/php/update_password.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, newPassword })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert(data.message);
-                    modal.hide();
-                    // 페이지 새로 고침 또는 사용자 리스트 갱신
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('비밀번호 재설정 중 오류가 발생했습니다.');
-                });
+                resetPassword(username, newPassword, modal); // 사용자 ID와 새로운 비밀번호 전달
             } else {
                 alert('새 비밀번호를 입력해 주세요.');
             }
@@ -80,4 +63,21 @@ document.querySelectorAll('.reset_btn').forEach(button => {
     });
 });
 
-
+function resetPassword(username, newPassword, modal) {
+    fetch('/script/php/update_password.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, newPassword }) // ID와 새 비밀번호를 서버로 전송
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+        modal.hide(); // 모달 닫기
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('비밀번호 변경 중 오류가 발생했습니다.');
+    });
+}
