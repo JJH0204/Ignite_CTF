@@ -29,6 +29,7 @@ if ($result->num_rows > 0) {
     // 인증 성공
     session_start(); // 세션 시작
     $_SESSION['username'] = $username; // 세션에 사용자 이름 저장
+    $_SESSION['password'] = $password; // 세션에 비밀번호 저장
     
     echo json_encode(['success' => true, 'username' => $username]);
 } else {
