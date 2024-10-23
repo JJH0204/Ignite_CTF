@@ -10,7 +10,7 @@ $requester  = isset($_SERVER['HTTP_REQUESTER']) ? $_SERVER['HTTP_REQUESTER'] : '
 //$username = base64_decode($requester);
 $username = $requester;
 if ($username == 'admin') {
-    $password = 'adminpassword';
+    $password = 'adminPAssWOrd';
 } else {
     $password = isset($_SESSION['password']) ? $_SESSION['password'] : ''; // 데이터베이스 비밀번호
 }
