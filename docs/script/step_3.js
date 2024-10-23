@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var correctAnswer = 'ignitectf'; // 여기에 암호(정답)를 설정
 
     // 마크다운 파일 경로 (개발자가 지정)
-    var filePath = '../markdown/Step_2.md'; // 마크다운 파일의 경로
+    var filePath = '../markdown/Step_3.md'; // 마크다운 파일의 경로
 
     // 마크다운 파일 불러오기 (로컬에서 fetch를 사용할 경우 서버가 필요함)
     fetch(filePath)
