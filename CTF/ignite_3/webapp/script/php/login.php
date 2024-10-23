@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 // 데이터베이스 연결 설정
 $servername = '127.0.0.1'; // MySQL 서버 주소
 $usernameDB = "root"; // DB 사용자 이름
-$passwordDB = "1515"; // DB 비밀번호
+$passwordDB = "i0oH3aemxD7T71tPr1nK"; // DB 비밀번호
 $dbname = "adminDB"; // 사용할 데이터베이스 이름
 
 // MySQL 연결
