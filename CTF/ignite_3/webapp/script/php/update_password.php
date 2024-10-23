@@ -10,7 +10,7 @@ $newPassword = $input['newPassword'];
 // MySQL 데이터베이스 연결 정보
 $servername = "localhost";
 $dbUsername = "root"; // DB 사용자명
-$dbPassword = "1515"; // DB 비밀번호
+$dbPassword = "i0oH3aemxD7T71tPr1nK"; // DB 비밀번호
 $dbName = "adminDB"; // DB 이름
 
 // MySQL 연결
