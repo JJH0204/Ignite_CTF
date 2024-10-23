@@ -1,5 +1,0 @@
-DocumentRoot="/var/www/html/ignite_3/webapp/"
-설정파일=/etc/httpd/conf/httpd.conf
-
-html/ 에 git 폴더를 만들어 깃 데이터 클론
-심볼릭 링크로 ignite_3/ 디렉터리 링크 생성
