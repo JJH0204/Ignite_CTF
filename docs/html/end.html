@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTF 엔딩 크레딧</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        .credits-container {
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            text-align: center;
+            animation: scroll-up 30s linear infinite;
+        }
+
+        @keyframes scroll-up {
+            0% {
+                top: 100%;
+            }
+
+            100% {
+                top: -100%;
+            }
+        }
+
+        .title {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .team-member {
+            font-size: 1.2em;
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="credits-container">
+        <div class="section">
+            <div class="title">IgniteCTF</div>
+            <img src="../img/logo_team_firewall.png" alt="CTF 로고" class="logo">
+        </div>
+        <div class="section">
+            <div class="section-title"></div>
+            <div class="team-member">팀원: 장진영 (팀 리더/Wordpress 구축/Back-end/웹,DB 취약점 점검)</div>
+            <div class="team-member">팀원: 최민제 (Database 구축/시스템,DB 취약점 점검)</div>
+            <div class="team-member">팀원: 김지홍 (Front-end/모의해킹)</div>
+            <div class="team-member">팀원: 정재호 (기획 및 설계/시스템,웹,DB 취약점 점검)</div>
+        </div>
+        <div class="section">
+            <div class="section-title">프로젝트 정보</div>
+            <div>이름: Ignite</div>
+            <img src="../img/Ignite_logo.png" alt="CTF 로고" class="logo">
+            <div>날짜: 2024년 10월 25일</div>
+            <div>버전: 1.0.0</div>
+        </div>
+        <div class="section">
+            <div class="section-title">Special Thanks To</div>
+            <div class="team-member">모든 참가자들과 서포터들에게 감사의 말씀을 전합니다!</div>
+            <img src="../img/KoreaIT_logo.jpg" alt="CTF 로고" class="logo">
+            <img src="../img/subject_logo.png" alt="CTF 로고" class="logo">
+        </div>
+    </div>
+</body>
+
+</html>
