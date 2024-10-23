@@ -17,7 +17,8 @@ Linux
 	MJ - calendar  
 	JH - stories  
 	JiH - photos  
-  
+
+
 # 1. 사전 탐색 (1 point)  
 `nmap victim ip`  
 ![](Pasted%20image%2020241022163146.png)  
@@ -52,3 +53,56 @@ Linux
 ![Pasted%20image%2020241022173053.png](Pasted%20image%2020241022173053.png)  
   
 # 5. admin/publications로 ssh 접속
+![alt text]({98050B68-FCB6-461F-BB75-F358558BAA7E}.png)
+
+# 6. c 코드 작성
+```c
+#include <stdio.h>
+
+unsigned char ___hidden_key[] = {
+	0x42, ...
+}
+unsigned int ___hidden_len = 2948;
+
+int main() {
+	FILE *fp;
+	
+	fp = fopen("restored_file", "wb");
+
+	if (fp == NULL) {
+		// perror("File open Fail");
+		return 1;
+	} 
+
+	size_t written = fwrite(___hidden, 1, ___hidden_len, fp);
+	if (written != ___hidden_len) {
+		// perror("File Write Fail");
+		fclose(fp);
+		return 1;
+	}
+
+	printf("File Restored Success\n");
+	fclose(fp);
+
+	return 0;
+}
+```
+
+# 7. gcc 빌드 후 실행
+
+![alt text]({53E79D9A-6589-4FB0-B94B-DD0C7455EDE1}.png)
+
+![alt text]({FEBA1167-7947-43EC-801D-E1B264620246}.png)
+
+# 8. bzip2 압축 해제
+
+![alt text]({118B4F97-9237-4E36-B25D-1F525F1DBC20}.png)
+![alt text]({9BC793AB-E984-4CF8-AE07-EC5910C14628}.png)
+
+# 9. 아카이브 해제
+
+![alt text]({EDE7CEF0-8EC7-438F-B1CA-8567B28489A7}.png)
+
+# 10. root 원격 접속 시도
+
+![alt text]({91A24747-7A85-427C-BBE0-F227DB6ED7BB}.png)
