@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
       // 개발자가 설정한 정답 (암호)
-    var correctAnswer = 'ignitectf'; // 여기에 암호(정답)를 설정
+    var correctAnswer = 'kZnukR_fIBD=PXKsDMFahZfuCMWyY]i0'; // 여기에 암호(정답)를 설정
 
     // 마크다운 파일 경로 (개발자가 지정)
-    var filePath = '../markdown/Step_3.md'; // 마크다운 파일의 경로
+    var filePath = '../markdown/Step_4_1.md'; // 마크다운 파일의 경로
 
     // 마크다운 파일 불러오기 (로컬에서 fetch를 사용할 경우 서버가 필요함)
     fetch(filePath)
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             resultMessage.textContent = '정답입니다!';
             resultMessage.style.color = 'green';
 
-            window.location.href = '../html/step_4.html';
+            window.location.href = '../html/step_4_2.html';
         } else {
             resultMessage.textContent = '오답입니다. 다시 시도하세요.';
             resultMessage.style.color = 'red';

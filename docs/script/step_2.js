@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             resultMessage.textContent = '정답입니다!';
             resultMessage.style.color = 'green';
 
-            window.location.href = '../html/step_3.html';
+            window.location.href = '../html/step_3_1.html';
         } else {
             resultMessage.textContent = '오답입니다. 다시 시도하세요.';
             resultMessage.style.color = 'red';
