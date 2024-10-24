@@ -62,7 +62,7 @@ Linux
 unsigned char ___hidden_key[] = {
 	0x42, ...
 }
-unsigned int ___hidden_len = 2948;
+unsigned int ___hidden_key_len = 2948;
 
 int main() {
 	FILE *fp;
@@ -74,8 +74,8 @@ int main() {
 		return 1;
 	} 
 
-	size_t written = fwrite(___hidden, 1, ___hidden_len, fp);
-	if (written != ___hidden_len) {
+	size_t written = fwrite(___hidden_key, 1, ___hidden_key_len, fp);
+	if (written != ___hidden_key_len) {
 		// perror("File Write Fail");
 		fclose(fp);
 		return 1;
