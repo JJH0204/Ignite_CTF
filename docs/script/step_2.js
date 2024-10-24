@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
       // 개발자가 설정한 정답 (암호)
-    var correctAnswer = 'ignitectf'; // 여기에 암호(정답)를 설정
+    var correctAnswer = 'Agree'; // 여기에 암호(정답)를 설정
 
     // 마크다운 파일 경로 (개발자가 지정)
     var filePath = '../markdown/Step_2.md'; // 마크다운 파일의 경로
