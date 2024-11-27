@@ -7,8 +7,7 @@
 ## Team
 
 ![Team_simbol](./docs/img/logo_team_firewall.png)
-|jinyeong001(장진영)|프로필 링크|  
-|:--|:--|
+jinyeong001(장진영)|[프로필 링크](https://github.com/jinyeong001)
 JJH0204(정재호)|[프로필 링크](https://github.com/JJH0204)  
 wlghd0280(김지홍)|[프로필 링크](https://github.com/wlghd0280)  
 kporosl(최민제)|[프로필 링크](https://github.com/kporosl)  
